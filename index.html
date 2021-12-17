@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+    
+    <title>ViP Demo</title>
+
+    <!-- d3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+
+    <!-- Custom Style -->
+    <link href="./style.css" rel="stylesheet">
+
+    <script>
+      $( function() {
+        $( "#query1Sortable" ).sortable();
+        $( "#query1Sortable" ).disableSelection();
+      } );
+
+      $( function() {
+        $( "#query2Sortable" ).sortable();
+        $( "#query2Sortable" ).disableSelection();
+      } );
+
+      $( function() {
+        $( "#query3Sortable" ).sortable();
+        $( "#query3Sortable" ).disableSelection();
+      } );
+
+      $( function() {
+        $( "#query4Sortable" ).sortable();
+        $( "#query4Sortable" ).disableSelection();
+      } );
+      </script>
+
+  </head>
+
+  <body>
+      <div class="container-fluid">
+        <div class="row" style="margin-top:7px;">
+            <div class="col-md-4" style="margin-left:10px;">
+                <div id = "query1Card" class="card queryCard"> <!-- Query 1 card start -->
+                    <div class="card-body">
+                      <div class = "queryCardButtons">
+                        <row>
+                          <p>
+                              <text style="color:DimGray">Ethnicity <i class="fas fa-database fa-xs" style="color:white;"></i></text>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query1Query" aria-expanded="false" aria-controls="query1Query">
+                                Query
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query1Extrapolation" aria-expanded="false" aria-controls="query1Extrapolation">
+                                Extrapolation
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query1Metadata" aria-expanded="false" aria-controls="query1Metadata">
+                                Metadata
+                              </button>
+                              <button class = "simulationButton" id = "query1SimulationButton"><i id = "query1SimulationButtonIcon" class="fas fa-stop-circle fa-xs"></i></button> 
+                              <button style="float: right;" class = "expandQueryButton" id = "query1ExpandQueryButton"><i id = "query1ButtonIcon" class="fas fa-expand-alt fa-xs"></i></button> 
+                          </p>
+                        </row>
+                      </div>
+
+                        <div class="collapse" id="query1Query">
+                            <div class="card card-text">
+                              What is the proportion of patients in each ethnicity group in the database who were diagnosed with hypertension?
+                            </div>
+                        </div> <!-- query1Query collapsed div end -->
+                        <div class="collapse" id="query1Extrapolation">
+                            <div class="card card-text">
+                              <div>
+                                <input type="checkbox" id="query1ExtrapolationCheckbox" checked>
+                                <label> The data are a sample from a larger population.</label>
+                              </div>
+                            </div>
+                        </div> <!-- query1Extrapolation collapsed div end -->
+                        <div class="collapse" id="query1Metadata">
+                            <div id = "query1MetadataText" class="card card-text"></div>
+                        </div> <!-- query1Metadata collapsed div end -->
+                        <div class="panel-body query1" id="query1">
+                          <ul style = "padding:0;" id = "query1Sortable">
+                            <div id ="query1AccuracyAxis"></div>
+                            <div class = "accuracy_vis" id="query1AccuracyVis1"></div>
+                            <div class = "accuracy_vis" id="query1AccuracyVis2"></div>
+                            <div class = "accuracy_vis" id="query1AccuracyVis3"></div>
+                            <div class = "accuracy_vis" id="query1AccuracyVis4"></div>
+                          </ul>
+                        </div>
+                    </div> <!-- Query 1 card-body end -->
+                </div> <!-- Query 1 card end -->
+
+                <div id = "query3Card" class="card queryCard secondRowQuery">
+                    <div class="card-body">
+                      <div class = "queryCardButtons">
+                        <row>
+                          <p>
+                            <text style="color:DimGray">Race <i class="fas fa-database fa-xs" style="color:white;"></i></text>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query3Query" aria-expanded="false" aria-controls="query3Query">
+                                Query
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query3Extrapolation" aria-expanded="false" aria-controls="query3Extrapolation">
+                                Extrapolation
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query3Metadata" aria-expanded="false" aria-controls="query3Metadata">
+                                Metadata
+                              </button>
+                              <button class = "simulationButton" id = "query3SimulationButton"><i id = "query3SimulationButtonIcon" class="fas fa-stop-circle fa-xs"></i></button>
+                              <button style="float: right;" class = "expandQueryButton" id = "query3ExpandQueryButton"><i id = "query3ButtonIcon" class="fas fa-expand-alt fa-xs"></i></button> 
+                          </p>
+                      </row>
+                      </div>
+                        <div class="collapse" id="query3Query">
+                            <div class="card card-text">
+                              What is the proportion of patients in each race group in the database who were diagnosed with hypertension?
+                            </div>
+                        </div> <!-- query3Query collapsed div end -->
+                        <div class="collapse" id="query3Extrapolation">
+                          <div class="card card-text">
+                            <div>
+                              <input type="checkbox" id="query3ExtrapolationCheckbox" checked>
+                              <label> The data are a sample from a larger population.</label>
+                            </div>
+                          </div>
+                        </div> <!-- query3Extrapolation collapsed div end -->
+                        <div class="collapse" id="query3Metadata">
+                            <div id = "query3MetadataText" class="card card-text"></div>
+                        </div> <!-- query3Metadata collapsed div end -->
+                        <div class="panel-body" id="query3">
+                          <div id = "query3AccuracyAxis"></div>
+                          <ul style = "padding:0;" id = "query3Sortable">
+                            <div class = "accuracy_vis" id="query3AccuracyVis1"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis2"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis3"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis4"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis5"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis6"></div>
+                            <div class = "accuracy_vis" id="query3AccuracyVis7"></div>
+                          </ul>
+                        </div>
+                    </div> <!-- Query 3 card-body end -->
+                </div> <!-- Query 3 card end -->
+            </div> <!-- col-md-4 end -->
+
+            <div class="col-md-4" style="margin-left:-20px;">
+                <div id = "query2Card" class="card queryCard"> <!-- Query 2 card start -->
+                    <div class="card-body">
+                      <div class = "queryCardButtons">
+                        <row>
+                          <p>
+                            <text style="color:DimGray">Age <i class="fas fa-database fa-xs" style="color:white;"></i></text> 
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query2Query" aria-expanded="false" aria-controls="query2Query">
+                                Query
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query2Extrapolation" aria-expanded="false" aria-controls="query2Extrapolation">
+                                Extrapolation
+                              </button>
+                              <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query2Metadata" aria-expanded="false" aria-controls="query2Metadata">
+                                Metadata
+                              </button>
+                              <button class = "simulationButton" id = "query2SimulationButton"><i id = "query2SimulationButtonIcon" class="fas fa-stop-circle fa-xs"></i></button>
+                              <button style="float: right;" class = "expandQueryButton" id="query2ExpandQueryButton"><i id="query2ButtonIcon" class="fas fa-expand-alt fa-xs"></i></button>
+                          </p>
+                        </row>
+                      </div>
+                        <div class="collapse" id="query2Query">
+                            <div class="card card-text">
+                              What is the proportion of patients in each age group in the database who were diagnosed with hypertension?
+                            </div>
+                        </div> <!-- query2Query collapsed div end -->
+                        <div class="collapse" id="query2Extrapolation">
+                          <div class="card card-text">
+                            <div>
+                              <input type="checkbox" id="query2ExtrapolationCheckbox" checked>
+                              <label> The data are a sample from a larger population.</label>
+                            </div>
+                          </div>
+                        </div> <!-- query2Extrapolation collapsed div end -->
+                        <div class="collapse" id="query2Metadata">
+                            <div id = "query2MetadataText" class="card card-text"></div>
+                        </div> <!-- query2Metadata collapsed div end -->
+                        <div class="panel-body" id="query2">
+                          <div id = "query2AccuracyAxis"></div>
+                          <ul style = "padding:0;" id = "query2Sortable">
+                            <div class = "accuracy_vis" id="query2AccuracyVis1"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis2"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis3"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis4"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis5"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis6"></div>
+                            <div class = "accuracy_vis" id="query2AccuracyVis7"></div>
+                          </ul>
+                        </div>
+                    </div> <!-- Query 2 card-body end -->
+                </div> <!-- Query 2 card end -->
+
+                <div id="query4Card" class="card queryCard secondRowQuery"> <!-- Query 4 card start -->
+                    <div class="card-body">
+                      <div class = "queryCardButtons">
+                        <row>
+                        <p>
+                          <text style="color:DimGray">Zip <i class="fas fa-database fa-xs" style="color:white;"></i></text>
+                            <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query4Query" aria-expanded="false" aria-controls="query4Query">
+                              Query
+                            </button>
+                            <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query4Extrapolation" aria-expanded="false" aria-controls="query4Extrapolation">
+                              Extrapolation
+                            </button>
+                            <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query4Metadata" aria-expanded="false" aria-controls="query4Metadata">
+                              Metadata
+                            </button>
+                            <button class = "simulationButton" id = "query4SimulationButton"><i id = "query4SimulationButtonIcon" class="fas fa-stop-circle fa-xs"></i></button>
+                            <button style="float: right;" class = "expandQueryButton" id = "query4ExpandQueryButton"><i id = "query4ButtonIcon" class="fas fa-expand-alt fa-xs"></i></button> 
+                        </p>
+                        </row>
+                      </div>
+                        <div class="collapse" id="query4Query">
+                            <div class="card card-text">
+                              What is the proportion of patients in each zip code group in the database who were diagnosed with hypertension?
+                            </div>
+                        </div> <!-- query4Query collapsed div end -->
+                        <div class="collapse" id="query4Extrapolation">
+                          <div class="card card-text">
+                            <div>
+                              <input type="checkbox" id="query4ExtrapolationCheckbox" checked>
+                              <label> The data are a sample from a larger population.</label>
+                            </div>
+                          </div>
+                        </div> <!-- query4Extrapolation collapsed div end -->
+                        <div class="collapse" id="query4Metadata">
+                            <div id = "query4MetadataText" class="card card-text"></div>
+                        </div> <!-- query4Metadata collapsed div end -->
+                        <div class="panel-body" id="query4">
+                          <div id = "query4AccuracyAxis"></div>
+                        <ul style = "padding:0;" id="query4Sortable">
+                          <div class = "accuracy_vis" id="query4AccuracyVis1"></div>
+                          <div class = "accuracy_vis" id="query4AccuracyVis2"></div>
+                          <div class = "accuracy_vis" id="query4AccuracyVis3"></div>
+                        </ul>
+                        </div>
+                    </div> <!-- Query 4 card-body end -->
+                </div> <!-- Query 4 card end -->
+
+            </div> <!-- col-md-4 end -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Privacy Use</div>
+                    <div class="card-body">
+
+                      <div class = "form-inline">
+                        <div class="def-number-input number-input safari_only">
+                          Total Budget: 
+                          <input id = "totalEpsilonBudgetInput" class="quantity" min="0" max = "8" name="quantity" value="8" step = ".1" type="number">
+                        </div>
+
+                        <div style = "margin-left: 10px;">
+                          Remaining Budget: 
+                        </div>
+
+                        <div id = "remainingEpsilonBudget" style = "margin-left: 10px;">
+                        </div>
+                      </div>
+                    
+                      <div class = "form-inline">
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="responsiveCheckbox">
+                          <label class="custom-control-label" for="responsiveCheckbox" id = "responsiveSwitchLabel"><text id="responsiveSwitchText">Responsive</text></label>
+                        </div>
+
+                        <button class = "simulationButton" id = "allSimulationButton"><i id = "allSimulationButtonIcon" class="fas fa-stop-circle fa-med"></i><text style="font-size:12px;"> All Simulations</text></button>
+                      </div>
+                      
+
+                      <div id="epsilon-sliders">
+                        <div class="row">
+                          <label class = "epsilonSliderLabel" for = "query1EpsilonSlider">E.</label>
+                          <div class = "epsilonSliderDiv" id ="query1EpsilonSlider"></div>
+                          <label class = "epsilonLock">
+                            <input id = "query1EpsilonLock" type="checkbox" onchange="lock1()" data-toggle="toggle" data-size = "xs" data-on="<i class='fas fa-lock fa-xs'></i>" data-off="<i class='fas fa-lock-open fa-xs'></i>">
+                          </label>
+                        </div>
+
+                        <div class="row">
+                          <label class = "epsilonSliderLabel" for = "query2EpsilonSlider">A.</label>
+                          <div class = "epsilonSliderDiv" id ="query2EpsilonSlider"></div>
+                          <label class = "epsilonLock">
+                            <input id = "query2EpsilonLock" type="checkbox" onchange="lock2()" data-toggle="toggle" data-size = "xs" data-on="<i class='fas fa-lock fa-xs'></i>" data-off="<i class='fas fa-lock-open fa-xs'></i>">
+                          </label>
+                        </div>
+
+                        <div class="row">
+                          <label class = "epsilonSliderLabel" for = "query3EpsilonSlider">R.</label>
+                          <div class = "epsilonSliderDiv" id ="query3EpsilonSlider"></div>
+                          <label class = "epsilonLock">
+                            <input id= "query3EpsilonLock" type="checkbox" onchange="lock3()" data-toggle="toggle" data-size = "xs" data-on="<i class='fas fa-lock fa-xs'></i>" data-off="<i class='fas fa-lock-open fa-xs'></i>">
+                          </label>
+                        </div>
+
+                        <div class="row">
+                          <label class = "epsilonSliderLabel" for = "query4EpsilonSlider">Z.</label>
+                          <div class = "epsilonSliderDiv" id ="query4EpsilonSlider"></div>
+                          <label class = "epsilonLock">
+                            <input id = "query4EpsilonLock" type="checkbox" onchange="lock4()" data-toggle="toggle" data-size = "xs" data-on="<i class='fas fa-lock fa-xs'></i>" data-off="<i class='fas fa-lock-open fa-xs'></i>">
+                          </label>
+                        </div>
+                        
+                      </div>
+                    </div>
+                </div> <!-- Privacy Use card end -->
+            <div class="card secondRowQuery">
+                <div class="card-header">Disclosure Risk (Lee-Clifton Attack Model)</div>
+                <div class="card-body">
+                  <div id="risk_vis"></div>
+                </div>
+            </div>
+            </div> <!-- col-md-4 end -->
+        </div> <!-- row end -->
+
+      </div> <!-- container-fluid end -->
+      
+      <script src="visualizations.js"></script>
+      <script src = "expandButtonStartStopButton.js"></script>
+
+  </body>

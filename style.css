@@ -1,0 +1,252 @@
+.secondRowQuery {
+    margin-top: 10px;
+}
+
+.card-text{
+    border: 0;
+    font-size: 14px;
+}
+
+.btn-small{
+    width:20%;
+    font-size: 10px;
+    padding-left:0;
+    padding-right:0;
+    background-color: white;
+    border-color: lightgray;
+    color: darkgray;
+    padding-bottom:0;
+    padding-top: 0;
+}
+
+.expandQueryButton{
+  background-color:white;
+  border: none;
+  color: darkgray;
+}
+
+
+.expandQueryButton:hover{
+  color:black;
+  cursor:pointer;
+}
+
+.simulationButton{
+  background-color: white;
+  border: none;
+  color: darkgray;
+}
+
+.simulationButton:hover{
+  color:black;
+  cursor:pointer;
+}
+
+.epsilonSliderLabel{
+    margin-left: 15px; 
+    font-size: 12px;
+    color: dimgray;
+    position: relative;
+    top:5px;
+}
+
+.epsilonSliderDiv{
+    margin-right:5px; 
+    margin-left:-15px;
+}
+
+.epsilonLock{
+    margin-right:15px;
+}
+
+.nonPrivateCI_95{
+    /* fill: #deebf7; */
+    fill: #d3d3d3;
+  }
+  
+  .nonPrivateCI_80{
+    fill: #a8a8a8;
+  }
+  
+  .nonPrivateCI_50{
+    fill: #7f7f7f;
+  }
+
+  .privateCI_50{
+    fill: #02528c;
+  }
+  
+  .privateCI_80{
+    fill: #2278b7;
+  }
+  
+  .privateCI_95{
+    fill: #589ee0;
+  }
+
+  .gBin{
+      fill: #2278b7;
+      cursor: pointer;
+      opacity: .8;
+  }
+
+  .accuracy_vis:hover{
+    background-color: #f3f3f3;
+  }
+  
+  .accuracy_vis:hover .tick > text{
+    display:block;
+    font-size: 12px;
+  }
+  
+  .accuracy_vis .tick > text{
+    display:none;
+  }
+ 
+  .queryCard.fullscreen{
+    z-index: 9999; 
+    width: 65%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    margin-top: 0px;
+    margin-left: 15px;
+ }
+
+ .queryCard{
+  height: 350px;
+  overflow-y:auto;
+ }
+
+ #responsiveSwitchLabel{
+   color: darkgray;
+   font-size: 12px;
+ }
+
+ #responsiveSwitchLabel:hover{
+   cursor:pointer;
+ }
+
+ #responsiveSwitchText{
+    position: relative;
+    top: 3px;
+    left: -3px;
+ }
+
+.groupName{
+  font-family: Avenir;
+  font-size: 10px;
+}
+
+.accuracy_vis{
+  border-radius: 0px;
+  background-color: white;
+  padding-right:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  position: relative;
+  cursor: move;
+}
+
+.tooltip{
+  pointer-events:none;
+  background-color: white;
+  border: solid;
+  border-width: .5px;
+  border-radius: 5px;
+  padding: 5px;
+  position: fixed;
+  font-size: 11px;
+}
+
+.queryCardButtons{
+ margin-bottom:-10px;
+ margin-top: -15px;
+}
+
+.card-header{
+  padding-bottom:3px;
+  padding-top: 3px;
+  color: dimgray;
+}
+
+#query2 .gBin{
+  fill:#f4760b;
+  opacity: .8;
+  cursor: pointer;
+}
+
+#query2 .privateCI_50{
+  fill: #cb5400;
+}
+
+#query2 .privateCI_80{
+  fill: #f4760b;
+}
+
+#query2 .privateCI_95{
+  fill: #ffa942;
+}
+
+.query1risk_circle{
+  fill: #2278b7;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.query2risk_circle{
+  fill: #f4760b;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#query3 .privateCI_50{
+  fill: #006d00;
+}
+
+#query3 .privateCI_80{
+  fill: #2a9e2a
+}
+
+#query3 .privateCI_95{
+  fill: #61ce58;
+}
+
+#query3 .gBin{
+  fill: #2a9e2a;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.query3risk_circle{
+  fill: #2a9e2a;
+  cursor: pointer;
+}
+
+#query4 .privateCI_50{
+  fill: #310d5b;
+}
+
+#query4 .privateCI_80{
+  fill: #603889;
+}
+
+#query4 .privateCI_95{
+  fill: #9165bb;
+}
+
+#query4 .gBin{
+  fill: #603889;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.query4risk_circle{
+  fill: #603889;
+  cursor: pointer;
+}
+
+.total_risk{
+  cursor:pointer;
+}
