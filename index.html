@@ -55,6 +55,19 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Visualizing Privacy (ViP) Demo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" target="_blank" rel="noopener noreferrer" href="https://arxiv.org/pdf/2201.05964.pdf">Paper</a>
+          <a class="nav-item nav-link" target="_blank" rel="noopener noreferrer" href="https://medium.com/multiple-views-visualization-research-explained/visualizing-the-accuracy-privacy-trade-off-to-improve-budget-decisions-with-differential-privacy-66fc3efb34a">Blogpost</a>
+        </div>
+      </div>
+    </nav>
+
       <div class="container-fluid">
         <div class="row" style="margin-top:7px;">
             <div class="col-md-4" style="margin-left:10px;">
@@ -63,7 +76,14 @@
                       <div class = "queryCardButtons">
                         <row>
                           <p>
-                              <text style="color:DimGray">Ethnicity <i class="fas fa-database fa-xs" style="color:white;"></i></text>
+                              <text style="color:DimGray">Ethnicity
+                                <i class="question-mark">
+                                  <svg width="1em" height="1em" transform="translate(0,-1)" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg" tabindex="0" data-toggle="popover" data-trigger="focus" data-html = "true" data-container="body" data-title = "What does this panel show?" data-content="This panel shows results from the query shown in the <strong>Query</strong> tab. Click on the <strong>Metadata</strong> tab to learn more about the dataset of records the query is executed over, the number of records in each subgroup of the query, and any sensitive attributes accessed by the query. Use the <strong>Extrapolation</strong>  tab to specify whether the queried data are a sample from a larger population (if a sample, ViP will display confidence intervals (CIs) for the population proportions and privacy-preserving CIs for the population proportions).<img src='confidenceIntervals.png' width=100% height=100%> The vertical black lines show the query results, while the animated vertical red lines show hypothetical privacy-preserving releases. Use the play/stop button to start/stop animations. Dotplots show the distributions from which privacy-preserving releases are drawn. There are 25 dots, so each dot represents roughly 4% chance." data-placement="right">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                  </svg>
+                                </i>
+                              </text>
                               <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query1Query" aria-expanded="false" aria-controls="query1Query">
                                 Query
                               </button>
@@ -112,7 +132,7 @@
                       <div class = "queryCardButtons">
                         <row>
                           <p>
-                            <text style="color:DimGray">Race <i class="fas fa-database fa-xs" style="color:white;"></i></text>
+                            <text style="color:DimGray">Race<i class="fas fa-database fa-xs" style="color:white;"></i></text>
                               <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query3Query" aria-expanded="false" aria-controls="query3Query">
                                 Query
                               </button>
@@ -165,7 +185,7 @@
                       <div class = "queryCardButtons">
                         <row>
                           <p>
-                            <text style="color:DimGray">Age <i class="fas fa-database fa-xs" style="color:white;"></i></text> 
+                            <text style="color:DimGray">Age<i class="fas fa-database fa-xs" style="color:white;"></i></text> 
                               <button class="btn btn-primary btn-small" type="button" data-toggle="collapse" data-target="#query2Query" aria-expanded="false" aria-controls="query2Query">
                                 Query
                               </button>
@@ -261,7 +281,17 @@
             </div> <!-- col-md-4 end -->
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Privacy Use</div>
+                    <div class="card-header">Privacy Use
+                      <i class="question-mark">
+                        <svg width="1em" height="1em" transform="translate(2,-2)" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg" tabindex="0" data-toggle="popover" data-trigger="focus" data-html = "true" data-container="body" data-title = "What does this panel show?" data-content="This panel allows you to allocate privacy budget to each query. <strong>Total Budget</strong> can be adjusted to reflect the total privacy budget to be split between queries. <strong>Remaining Budget</strong> shows how much of the total budget is left based on how much is allocated to the queries. Sliders control the amount of privacy budget allocated to each query. For example, the slider labeled “E” controls the privacy budget applied to the Ethnicity query.
+                          <br>
+                          When <strong>Responsive</strong> mode is toggled on, ViP assists in staying under the total budget. If you increase a query’s privacy budget such that the remaining budget becomes negative, the interface will responsively decrease the other querys’ allocated budgets. If there are queries whose privacy budgets should not be responsively updated, you may “lock” their budgets by toggling on their <strong>lock</strong> buttons.
+                          " data-placement="right">
+                          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                        </svg>
+                      </i>
+                    </div>
                     <div class="card-body">
 
                       <div class = "form-inline">
@@ -325,7 +355,15 @@
                     </div>
                 </div> <!-- Privacy Use card end -->
             <div class="card secondRowQuery">
-                <div class="card-header">Disclosure Risk (Lee-Clifton Attack Model)</div>
+                <div class="card-header">Disclosure Risk (Lee-Clifton Attack Model)
+                  <i class="question-mark">
+                    <svg width="1em" height="1em" transform="translate(2,-2)" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg" tabindex="0" data-toggle="popover" data-trigger="focus" data-html = "true" data-container="body" data-title = "What does this panel show?" data-content="The plot describes the disclosure risk associated with each query (see each circle with labels corresponding to each query) and over all queries (see the circle labeled “Total”). The disclosure risk represents an upper bound on the probability that an adversary correctly guesses a record’s inclusion in a query’s computation after seeing that query’s privacy-preserving releases.
+                    For more information on how the risk is calculated, see <A href='https://git.gnunet.org/bibliography.git/plain/docs/Choosing-%CE%B5-2011Lee.pdf'>(Lee and Clifton 2011)</A>." data-placement="right">
+                      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                    </svg>
+                  </i>
+                </div>
                 <div class="card-body">
                   <div id="risk_vis"></div>
                 </div>
@@ -334,7 +372,14 @@
         </div> <!-- row end -->
 
       </div> <!-- container-fluid end -->
-      
+
+      <script>
+        $(document).ready(function(){
+            $.noConflict();
+            $('[data-toggle="popover"]').popover({container:'body'});
+        });
+      </script>
+
       <script src="visualizations.js"></script>
       <script src = "expandButtonStartStopButton.js"></script>
 
