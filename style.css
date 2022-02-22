@@ -1,3 +1,22 @@
+.navbar-brand{
+  font-family: Avenir !important;
+  font-size: 20px;
+  color: black;
+}
+
+.navbar-custom{
+  background-color: lightslategrey !important;
+}
+
+.navbar-top{
+  background-color: white !important;
+}
+
+.popover{
+  max-width: 325px;
+  z-index:9999;
+}
+
 .secondRowQuery {
     margin-top: 10px;
 }
